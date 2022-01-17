@@ -1,16 +1,32 @@
-import React from "react";
+import { useState } from "react";
 import { GlobalStyle } from "./assets/styles/global";
 import { Dashboard } from "./components/Dashboard";
 import { Header } from "./components/Header";
+import Modal from "react-modal";
+import { ModalTransactions } from "./components/ModalTransactions";
 
-function App() {
+Modal.setAppElement("#root");
+
+export function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  function handleOpenModal() {
+    setIsModalOpen(true);
+  }
+
+  function handleCloseModal() {
+    setIsModalOpen(false);
+  }
+
   return (
     <>
-      <Header />
+      <Header isModalOpen={handleOpenModal} />
       <Dashboard />
+      <ModalTransactions
+        isOpen={isModalOpen}
+        onRequestClose={handleCloseModal}
+      />
       <GlobalStyle />
     </>
   );
 }
-
-export default App;

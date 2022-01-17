@@ -1,7 +1,13 @@
+import { useState } from "react";
 import logoImg from "../../assets/img/logo.svg";
 import { BoxLogo, Container, Content } from "./styles";
+import Modal from "react-modal";
 
-export function Header() {
+interface HeaderProps {
+  isModalOpen: () => void;
+}
+
+export function Header(props: HeaderProps) {
   return (
     <Container>
       <Content>
@@ -9,7 +15,9 @@ export function Header() {
           <img src={logoImg} alt="bt money" />
           <h2>BT Money</h2>
         </BoxLogo>
-        <button type="button">Nova Transação</button>
+        <button type="button" onClick={props.isModalOpen}>
+          Nova Transação
+        </button>
       </Content>
     </Container>
   );
