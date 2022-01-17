@@ -4,6 +4,7 @@ import { Dashboard } from "./components/Dashboard";
 import { Header } from "./components/Header";
 import Modal from "react-modal";
 import { ModalTransactions } from "./components/ModalTransactions";
+import { TransactionsProvider } from "./hooks/useTransactions";
 
 Modal.setAppElement("#root");
 
@@ -19,7 +20,7 @@ export function App() {
   }
 
   return (
-    <>
+    <TransactionsProvider>
       <Header isModalOpen={handleOpenModal} />
       <Dashboard />
       <ModalTransactions
@@ -27,6 +28,6 @@ export function App() {
         onRequestClose={handleCloseModal}
       />
       <GlobalStyle />
-    </>
+    </TransactionsProvider>
   );
 }
